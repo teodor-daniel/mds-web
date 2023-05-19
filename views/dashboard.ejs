@@ -1,15 +1,146 @@
 <%- include('layout.ejs'); %>
+
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+  <div class="container">
+    <% if (user != null) { %>
+          <a href="/log-out" class="btn btn-primary me-2">Log out</a>
+    <% } %>
+  </div>
+</nav>
 <div class="container">
-    <div class="row justify-content-center">
-
-        <h3>My name is <%= user.name %> </h3> &nbsp;
-        <h3>I stay at <%= user.location %> </h3> <br>
-
+    <div class="row">
+      <div class="col-6" style="padding: 10px;">          
+          <div class="card">
+            <h5 class="card-header"><i class="fa-solid fa-plus mr-2"></i>Add Game</h5>
+            <% if (alert != null) {
+                if (alert.action == "ADD_CAMPAIGN") {
+                  let bannerType = (alert.error) ? ('danger') : ('success');
+              %>
+                  <div class="alert alert-<%- bannerType %> alert-dismissible fade show" role="alert">
+                    <%- alert.message %>
+                    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                  </div>
+              <% 
+                }
+               } 
+            %>
+            <form method="post" action="/campaign">
+              <div class="card-body">
+                <input type="text" name="gameName" class="form-control" placeholder="Name" style="width: 100%;">
+                <div class="row my-3 ">
+                  <div class="col">
+                    <input type="text" name="offerStore" class="form-control" placeholder="Store">
+                  </div>
+                  <div class="col">
+                    <input type="text" name="offerLink" class="form-control" placeholder="Link">
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="col">
+                    <input type="text" name="offerType" class="form-control" placeholder="Type">
+                  </div>
+                  <div class="col">
+                    <input type="text" name="offerEndDate" class="form-control" placeholder="End date">
+                  </div>
+                </div>
+                <div class="row-6 mt-3">
+                      <button type="submit" class="btn btn-primary mx-auto float-end">Save</button>
+                </div>
+              </div>
+            </form>
+          </div>
+      </div>
+      <div class="col-6" style="padding: 10px;">
+        <div class="card">
+            <h5 class="card-header"><i class="fa-solid fa-bullhorn mr-2"></i>Notification</h5>
+            <div class="card-body">
+                <div class="row mb-3">
+                    <div class="col">
+                      <input type="text" class="form-control" placeholder="Header">
+                </div>
+            </div>
+            <div class="row">
+                <div class="col">
+                  <textarea  class="form-control" placeholder="Message"></textarea>
+                </div>
+          </div>
+          <div class="row-6 my-5 ">
+            <a href="#" class="btn btn-primary mx-auto float-end">Send</a>
+        </div>
+      </div>
     </div>
 </div>
-<div>
-    <a href="/logout"> <button type="submit" class="btn btn-primary btn-lg btn-block login-button">Logout</button> </a>
+
+<div class="col-12 mt-5">
+    <div class="card">
+    <h5 class="card-header"><i class="fa-solid fa-list mr-2"></i>Active campaigns</h5>
+    <% if (alert != null) {
+          if (alert.action == "DELETE_CAMPAIGN") {
+            let bannerType = (alert.error) ? ('danger') : ('success');
+        %>
+            <div class="alert alert-<%- bannerType %> alert-dismissible fade show" role="alert">
+              <%- alert.message %>
+              <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+            </div>
+        <% 
+          }
+        } 
+    %>
+    <div class="card-body">
+        <div class="table-responsive">
+            <table class="table">
+            <thead>
+                <tr>
+                    <th>Name </th>
+                    <th>Store</th>
+                    <th>Type</th>
+                    <th>End date</th>
+                    <th></th>
+                </tr>
+            </thead>
+
+            <script>
+              function reformatDate(dateString) {
+                  var date = new Date(dateString);
+                  
+                  var day = date.getDate();
+                  var month = date.getMonth() + 1;
+                  var year = date.getFullYear();
+                  var hours = date.getHours();
+                  var minutes = date.getMinutes();
+                  
+                  day = (day < 10) ? '0' + day : day;
+                  month = (month < 10) ? '0' + month : month;
+                  hours = (hours < 10) ? '0' + hours : hours;
+                  minutes = (minutes < 10) ? '0' + minutes : minutes;
+                  
+                  var reformattedDate = day + '/' + month + '/' + year + ' ' + hours + ':' + minutes;
+                  
+                  return reformattedDate;
+              }  
+            </script>
+
+            <tbody>
+              <% for (let campaign of locals.campaigns) { %>
+                      <tr>
+                        <td><%- campaign.game_name %></td>
+                        <td><%- campaign.offer_store %></td>
+                        <td><%- campaign.offer_type %></td>
+                        <td><script>document.write(reformatDate("<%- campaign.offer_end_date %>"))</script></td>
+                        <td>
+                            <a href="/campaign/delete/<%- campaign.id %>" class="btn btn-danger btn-sm float-end">Delete</button>
+                        </td>
+                      </tr>
+              <% } %>
+            </tbody>
+            </table>
+        </div>
+    </div>
+    </div>
 </div>
+
+
+  
 
 </body>
 
