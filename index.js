@@ -51,8 +51,10 @@ app.get(['/', '/index'], (req, res) => {
     else
         res.redirect('/login');
 })
+app.use(express.static(__dirname + '/imagini'));
 
 app.use('/', require('./routes/dashboard'));
+app.use('/', require('./routes/register'));
 app.use('/', require('./routes/login'));
 app.use('/', require('./routes/campaign'));
 
