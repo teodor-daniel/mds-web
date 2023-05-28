@@ -41,7 +41,17 @@ const getGameByName = async (gameName) => {
     return game;
 }
 
+const getGameById = async (req, res) => {
+    const { id } = req.body;
+
+    const game = await GameModel.findOne({ _id: id });
+
+    res.status(200);
+    return res.send(JSON.stringify(game));
+}
+
 module.exports =  {
     newGame,
     getGameByName,
+    getGameById
 };

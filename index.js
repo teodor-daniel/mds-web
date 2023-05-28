@@ -1,5 +1,4 @@
-/* -> date pentru mobil
- * 
+/* 
  * Teo:
  * -> Populat DB
  * -> Icon navbar si plasat log out in dreapta (vineri)
@@ -57,6 +56,7 @@ app.use('/', require('./routes/dashboard'));
 app.use('/', require('./routes/register'));
 app.use('/', require('./routes/login'));
 app.use('/', require('./routes/campaign'));
+app.use('/', require('./routes/game'));
 
 const PORT = process.env.PORT || 8080;
 app.listen(PORT, console.log("Server has started at port " + PORT));
