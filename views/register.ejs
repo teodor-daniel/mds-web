@@ -7,12 +7,14 @@
   }
 
   .card {
-    background-color: #0e1c36;
+    background-color: #ebf2fa;
     border-radius: 0px;
+    
   }
 
   .cardbody-color {
     background-color: #ebf2fa;
+
   }
 
   a {
@@ -24,26 +26,26 @@
     <div class="col-md-6 offset-md-3">
       <div class="card my-5">
         <div class="card-body cardbody-color p-lg-5">
-          <h1 class="mt-4 mb-4 text-center">Register</h1>
+          <h1 class="text-center fw-bold">Register</h1>
           <div class="text-center">
-            <img src="dragut2.jpeg" class="img-fluid profile-image-pic img-thumbnail rounded-circle my-3" width="200px"
-              alt="profile">
+            <img src="dragut2.jpeg" class="img-fluid profile-image-pic img-thumbnail rounded-circle my-3" style="height: 200px; width: 200px; object-fit: cover;" alt="profile">
+          </div>
+          
           </div>
           <div class="card-body">
             <form class="form-horizontal" action="/register" method="POST">
               <div class="form-group">
-                <label for="email" class="cols-sm-2 control-label">Add Your Username</label>
+                <label for="email" class="cols-sm-2 control-label"><i class="fa-solid fa-user-plus mr-1"></i>Add Your Username</label>
                 <div class="cols-sm-10 w-100">
                   <div class="input-group">
                     <span class="input-group-addon"></span>
-                    <input type="text" class="form-control" name="username" id="email"
-                      placeholder="Enter your Username" />
+                    <input type="text" class="form-control" name="username" id="email"placeholder="Enter your Username" />
                   </div>
                 </div>
               </div>
 
               <div class="form-group w-100">
-                <label for="password" class="cols-sm-2 control-label">Add Your Password</label>
+                <label for="password" class="cols-sm-2 control-label"><i class="fa-solid fa-lock mr-1"></i>Add Your Password</label>
                 <div class="cols-sm-10">
                   <div class="input-group">
                     <span class="input-group-addon"></i></span>
@@ -54,7 +56,7 @@
               </div>
 
               <div class="form-group w-100">
-                <label for="retypepassword" class="cols-sm-2 control-label">Retype Password</label>
+                <label for="retypepassword" class="cols-sm-2 control-label"><i class="fa-solid fa-copy mr-1"></i>Retype Password</label>
                 <div class="cols-sm-10">
                   <div class="input-group">
                     <span class="input-group-addon"></i></span>
@@ -66,6 +68,7 @@
 
               <div class="form-group">
                 <button type="submit" class="btn btn-primary btn-lg btn-block login-button">Create</button>
+                <div id="emailHelp" class="form-text text-center mb-5 text-dark">Have an Account? <a href="/login" class="text-dark fw-bold"> Log in</a>
               </div>
             </form>
           </div>
