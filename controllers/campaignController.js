@@ -59,6 +59,8 @@ const getAllCampaigns = async (req, res) => {
             return firstDate - secondDate;
         });
 
+    console.log(campaigns);
+
     res.status(200);
     return res.send(campaigns);
 }

@@ -1,21 +1,3 @@
-/* 
- * Teo:
- * -> Populat DB
- * -> Icon navbar si plasat log out in dreapta (vineri)
- * -> Schimbat nume site, favicon (vineri)
- * -> Imbunatati login view (vineri)
- * -> Citire din JSON pentru store-uri si tipuri oferte (vineri)
- * -> search pe API-ul de la RAGW cand introduci numele unui joc (vineri)
- * -> QA (sambata)
- * 
- * Tudor:
- * -> implementare pe mobil (vineri)
- * -> notificari (vineri)
- * -> cronjobs (vineri)
- * -> some refactoring (sambata)
- * 
- */
-
 const express = require('express');
 var cookieParser = require('cookie-parser');
 var session = require('express-session');
@@ -57,6 +39,7 @@ app.use('/', require('./routes/register'));
 app.use('/', require('./routes/login'));
 app.use('/', require('./routes/campaign'));
 app.use('/', require('./routes/game'));
+app.use('/', require('./routes/notification'));
 
 const PORT = process.env.PORT || 8080;
 app.listen(PORT, console.log("Server has started at port " + PORT));

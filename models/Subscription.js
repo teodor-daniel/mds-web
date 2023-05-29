@@ -17,5 +17,5 @@ const SubscriptionSchema = new mongoose.Schema({
   }]
 });
 
-const Campaign = mongoose.model("Campaign", CampaignSchema);
-module.exports = Campaign;
+const Subscription = mongoose.model("Subscription", SubscriptionSchema);
+module.exports = Subscription;
